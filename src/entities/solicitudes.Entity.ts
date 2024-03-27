@@ -1,10 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
 
 @Entity({ name: 'TBL_SOLICITUDES', schema: 'BOTUTN' })
-@Index("IDX_FK_TBL_SOLICITUD_TBL_SESSION", ["idSession"])
-@Index("IDX_FK_TBL_SOLICITUD_TBL_USUARIO_ROL_REACCION", ["reaccion"])
-@Index("IDX_FK_TBL_SOLICITUD_TBL_USUARIO_ROL_SOLICITANTE", ["solicitante"])
-@Index("SYS_C008248", ["id"])
 
 export class Solicitud {
     @PrimaryColumn({ name: 'ID', type: 'number' })

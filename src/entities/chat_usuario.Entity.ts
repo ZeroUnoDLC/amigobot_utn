@@ -4,13 +4,7 @@ import { Usuario } from './usuario.entity';
 import { UsuarioRol } from './usuario_rol.entity'; 
 
 @Entity({ name: 'TBL_CHAT_USUARIO', schema: 'BOTUTN' })
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_CHAT", ["idChat"])
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_USUARIO_CREATED", ["usuarioCreated"])
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_USUARIO_INTERACTED", ["usuarioInteracted"])
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_USUARIO_ROL_CREATED", ["createdBy"]) 
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_USUARIO_ROL_DELETED", ["deletedBy"])
-@Index("IDX_FK_TBL_CHAT_USUARIO_TBL_USUARIO_ROL_UPDATED", ["updatedBy"])
-@Index("SYS_C008224", ["id"])
+
 export class ChatUsuario {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;

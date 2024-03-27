@@ -1,8 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
 
 @Entity({ name: 'TBL_COMENTARIO', schema: 'BOTUTN' })
-@Index("IDX_FK_TBL_COMENTARIO_TBL_SESSION", ["idSession"]) 
-@Index("SYS_C008225", ["id"]) 
 
 export class Comentario {
     @PrimaryColumn({ name: 'ID', type: 'number' })

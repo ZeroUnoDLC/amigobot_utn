@@ -2,7 +2,6 @@ import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, OneT
 import { ChatUsuario } from './chat_usuario.entity';
 
 @Entity({ name: 'TBL_CHAT', schema: 'BOTUTN' })
-@Index("SYS_C008220", ["id"])
 
 export class Chat {
     @PrimaryColumn({ name: 'ID', type: 'number' })

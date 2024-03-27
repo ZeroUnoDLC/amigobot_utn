@@ -1,7 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
 
 @Entity({ name: 'TBL_ROL', schema: 'BOTUTN' })
-@Index("SYS_C008244", ["id"])
 
 export class Rol {
     @PrimaryColumn({ name: 'ID', type: 'number' })

@@ -1,11 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
 
 @Entity({ name: 'TBL_MESSAGE', schema: 'BOTUTN' })
-@Index("IDX_FK_TBL_MESSAGE_TBL_ANSWEREBY_TBL_USUARIO_ROL", ["answerBy"])
-@Index("IDX_FK_TBL_MESSAGE_TBL_CHAT", ["idChat"])
-@Index("IDX_FK_TBL_MESSAGE_TBL_SESSION", ["idSession"])
-@Index("IDX_FK_TBL_MESSAGE_TBL_USUARIO_ROL", ["idUsuario"])
-@Index("SYS_C008241", ["id"])
 
 export class Message {
     @PrimaryColumn({ name: 'ID', type: 'number' })

@@ -2,11 +2,6 @@ import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Many
 import { ChatUsuario } from './chat_usuario.entity'; 
 
 @Entity({ name: 'TBL_USUARIO_ROL', schema: 'BOTUTN' })
-@Index("IDX_FK_TBL_USUARIO_ROL_TBL_ROL", ["idRol"])
-@Index("IDX_FK_TBL_USUARIO_ROL_TBL_USUARIO", ["idUsuario"])
-@Index("IDX_FK_TBL_USUARIO_ROL_TBL_USUARIO_ROL_DELETED", ["deletedBy"])
-@Index("IDX_FK_TBL_USUARIO_ROL_TBL_USUARIO_ROL_UPDATED", ["updatedBy"])
-@Index("PK_TBL_USUARIO_ROL", ["id"])
 
 export class UsuarioRol {
     @PrimaryColumn({ name: 'ID', type: 'number' })
