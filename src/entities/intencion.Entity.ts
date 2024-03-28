@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import { FraceIntencion } from './frace_intencion.entity';
-import { UsuarioRol } from './usuario_rol.entity';
+import { FraceIntencion } from './frace_intencion.Entity';
+import { UsuarioRol } from './usuario_rol.Entity';
 
 @Entity({ name: 'TBL_INTENCION', schema: 'BOTUTN' })
 export class Intencion {
@@ -34,6 +34,7 @@ export class Intencion {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
-    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.idIntencion)
-    fraceIntenciones: FraceIntencion[];
+    //Relacion con FraceIntencion
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.idIntenciones)
+    fraceIntencion: FraceIntencion[];
 }

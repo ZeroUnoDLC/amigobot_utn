@@ -65,13 +65,13 @@ export class UsuarioRol {
     deletedByChatUsuarios: ChatUsuario[];
 
     // Relaciones con FraceIntencion
-    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.createdBy)
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.createdByUsuarioRol)
     createdFraceIntenciones: FraceIntencion[];
 
-    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.updatedBy)
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.updatedByUsuarioRol)
     updatedFraceIntenciones: FraceIntencion[];
 
-    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.deletedBy)
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.deletedByUsuarioRol)
     deletedFraceIntenciones: FraceIntencion[];
 
     // Relaciones con Intencion
