@@ -42,6 +42,7 @@ export class Session {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
+    //Relación con tabla comentario
     @OneToMany(() => Comentario, comentario => comentario.idSession)
     comentarios: Comentario[];
 

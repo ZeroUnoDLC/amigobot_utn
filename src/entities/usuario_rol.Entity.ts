@@ -75,13 +75,13 @@ export class UsuarioRol {
     deletedFraceIntenciones: FraceIntencion[];
 
     // Relaciones con Intencion
-    @OneToMany(() => Intencion, intencion => intencion.createdBy)
+    @OneToMany(() => Intencion, intencion => intencion.createdByUsuarioRol)
     createdIntenciones: Intencion[];
 
-    @OneToMany(() => Intencion, intencion => intencion.updatedBy)
+    @OneToMany(() => Intencion, intencion => intencion.updatedByUsuarioRol)
     updatedIntenciones: Intencion[];
 
-    @OneToMany(() => Intencion, intencion => intencion.deletedBy)
+    @OneToMany(() => Intencion, intencion => intencion.deletedByUsuarioRol)
     deletedIntenciones: Intencion[];
 
     //Relaciones con message
