@@ -9,7 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           username: 'botutn',
           password: '0988188838',
           serviceName: 'XEPDB1',
-          autoLoadEntities: true,
+          entities: ["src/entities/**/*.entity{.ts,.js}"],
           synchronize: true,
         })
       ]

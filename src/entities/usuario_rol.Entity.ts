@@ -1,8 +1,14 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, Index } from 'typeorm';
-import { ChatUsuario } from './chat_usuario.entity'; 
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { ChatUsuario } from './chat_usuario.entity';
+import { FraceIntencion } from './frace_intencion.Entity';
+import { Intencion } from './intencion.Entity';
+import { Message } from './message.Entity';
+import { Session } from './session.Entity';
+import { Solicitud } from './solicitudes.Entity';
+import { Usuario } from './usuario.Entity';
+import { Rol } from './rol.Entity';
 
 @Entity({ name: 'TBL_USUARIO_ROL', schema: 'BOTUTN' })
-
 export class UsuarioRol {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -43,6 +49,102 @@ export class UsuarioRol {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
-    // @ManyToOne(() => ChatUsuario, chatUsuario => chatUsuario.usuarioRolCreador) 
-    // chatUsuariosCreated: ChatUsuario; 
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.usuarioCreated)
+    createdChatUsuarios: ChatUsuario[];
+
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.usuarioInteracted)
+    interactedChatUsuarios: ChatUsuario[];
+
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.createdBy)
+    createdByChatUsuarios: ChatUsuario[];
+
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.updatedBy)
+    updatedByChatUsuarios: ChatUsuario[];
+
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.deletedBy)
+    deletedByChatUsuarios: ChatUsuario[];
+
+    // Relaciones con FraceIntencion
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.createdBy)
+    createdFraceIntenciones: FraceIntencion[];
+
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.updatedBy)
+    updatedFraceIntenciones: FraceIntencion[];
+
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.deletedBy)
+    deletedFraceIntenciones: FraceIntencion[];
+
+    // Relaciones con Intencion
+    @OneToMany(() => Intencion, intencion => intencion.createdBy)
+    createdIntenciones: Intencion[];
+
+    @OneToMany(() => Intencion, intencion => intencion.updatedBy)
+    updatedIntenciones: Intencion[];
+
+    @OneToMany(() => Intencion, intencion => intencion.deletedBy)
+    deletedIntenciones: Intencion[];
+
+    //Relaciones con message
+    @OneToMany(() => Message, message => message.answeredBy)
+    answerMessages: Message[];
+
+    @OneToMany(() => Message, message => message.user)
+    messages: Message[];
+
+    //Relaciones con session 
+    @OneToMany(() => Session, session => session.usuario)
+    sessions: Session[];
+
+    @OneToMany(() => Session, session => session.createdByUsuario)
+    createdSessions: Session[];
+
+    @OneToMany(() => Session, session => session.updatedByUsuario)
+    updatedSessions: Session[];
+
+    @OneToMany(() => Session, session => session.deletedByUsuario)
+    deletedSessions: Session[];
+
+    //Relaciones con solicitudes
+    @OneToMany(() => Solicitud, solicitud => solicitud.solicitanteUsuario)
+    solicitudesSolicitante: Solicitud[];
+
+    @OneToMany(() => Solicitud, solicitud => solicitud.reaccionUsuario)
+    solicitudesReaccion: Solicitud[];
+
+    //Relaciones con usuario
+    @OneToMany(() => Usuario, usuario => usuario.updatedByUsuario)
+    updatedUser: Usuario[];
+
+    @OneToMany(() => Usuario, usuario => usuario.createdByUsuario)
+    createdUser: Usuario[];
+
+    @OneToMany(() => Usuario, usuario => usuario.deletedByUsuario)
+    deletedUser: Usuario[];
+
+    //Relaciones de muchos a uno con la entidad Rol
+    @ManyToOne(() => Rol, rol => rol.usuarioRol)
+    @JoinColumn({ name: 'ID_ROL' })
+    rol: Rol;
+
+    // Relaciones de muchos a uno con la entidad "Usuario"
+    @ManyToOne(() => Usuario, usuario => usuario.usuarioRoles)
+    @JoinColumn({ name: 'ID_USUARIO' })
+    usuario: Usuario;
+
+    //RELACIONES RECURSICAS
+    // Relación de "DELETEDBY" con la misma tabla "TBL_USUARIO_ROL"
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedByUsuarioRol)
+    @JoinColumn({ name: 'DELETEDBY' })
+    deletedByRol: UsuarioRol;
+
+    @OneToMany(() => UsuarioRol, usuarioRol => usuarioRol.deletedByRol)
+    deletedByUsuarioRol: UsuarioRol[];
+
+    // Relación de "UPDATEDBY" con la misma tabla "TBL_USUARIO_ROL"
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedByUsuarioRol)
+    @JoinColumn({ name: 'UPDATEDBY' })
+    updatedByRol: UsuarioRol;
+
+    @OneToMany(() => UsuarioRol, usuarioRol => usuarioRol.updatedByRol)
+    updatedByUsuarioRol: UsuarioRol[];
 }

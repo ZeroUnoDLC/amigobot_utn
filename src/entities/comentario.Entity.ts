@@ -1,7 +1,7 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { Session } from './session.Entity';
 
 @Entity({ name: 'TBL_COMENTARIO', schema: 'BOTUTN' })
-
 export class Comentario {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -12,8 +12,8 @@ export class Comentario {
     @Column({ name: 'CORREO', type: 'varchar', length: 200 })
     correo: string;
 
-    @Column({ name: 'ID_SESSION', type: 'number' })
-    idSession: number;
+    @ManyToOne(() => Session, session => session.comentarios)
+    idSession: Session;
 
     @CreateDateColumn({ name: 'CREATEDAT', type: 'timestamp' })
     createdAt: Date;

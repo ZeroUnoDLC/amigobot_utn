@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { ChatUsuario } from './chat_usuario.entity';
+import { UsuarioRol } from './usuario_rol.entity';
 
 @Entity({ name: 'TBL_USUARIO', schema: 'BOTUTN' })
 
@@ -49,6 +50,21 @@ export class Usuario {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
-    // @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.usuarioCreador)
-    // chatUsuariosCreated: ChatUsuario[];
+    //Relaciones
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedUser)
+    @JoinColumn({ name: 'UPDATEDBY' })
+    updatedByUsuario: UsuarioRol;
+
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdUser)
+    @JoinColumn({ name: 'CREATEDBY' })
+    createdByUsuario: UsuarioRol;
+
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedUser)
+    @JoinColumn({ name: 'DELETEDBY' })
+    deletedByUsuario: UsuarioRol;
+
+    //Relacion de uno a muchos con usuario_rol
+    @OneToMany(() => UsuarioRol, usuarioRol=> usuarioRol.usuario)
+    usuarioRoles: UsuarioRol[];
+
 }

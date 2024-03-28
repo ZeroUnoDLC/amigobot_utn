@@ -1,7 +1,9 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { UsuarioRol } from './usuario_rol.entity';
+import { Chat } from './chat.entity';
+import { Session } from './session.entity';
 
 @Entity({ name: 'TBL_MESSAGE', schema: 'BOTUTN' })
-
 export class Message {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -38,4 +40,24 @@ export class Message {
 
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
+
+    // Relación con UsuarioRol (ANSWERBY)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.answerMessages)
+    @JoinColumn({ name: 'ANSWERBY' })
+    answeredBy: UsuarioRol;
+
+    // Relación con Chat (ID_CHAT)
+    @ManyToOne(() => Chat, chat => chat.messages)
+    @JoinColumn({ name: 'ID_CHAT' })
+    chat: Chat;
+
+    // Relación con Session (ID_SESSION)
+    @ManyToOne(() => Session, session => session.messages)
+    @JoinColumn({ name: 'ID_SESSION' })
+    session: Session;
+
+    // Relación con UsuarioRol (ID_USUARIO)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.messages)
+    @JoinColumn({ name: 'ID_USUARIO' })
+    user: UsuarioRol;
 }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { UsuarioRol } from './usuario_rol.Entity';
 
 @Entity({ name: 'TBL_ROL', schema: 'BOTUTN' })
 
@@ -29,4 +30,8 @@ export class Rol {
 
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
+
+    //Relacion
+    @OneToMany(() => UsuarioRol, usuarioRol=> usuarioRol.rol)
+    usuarioRol: UsuarioRol[];
 }

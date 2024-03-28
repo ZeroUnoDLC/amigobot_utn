@@ -1,8 +1,8 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, OneToMany, Index } from 'typeorm';
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, OneToMany } from 'typeorm';
 import { ChatUsuario } from './chat_usuario.entity';
+import { Message } from './message.Entity';
 
 @Entity({ name: 'TBL_CHAT', schema: 'BOTUTN' })
-
 export class Chat {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -28,6 +28,10 @@ export class Chat {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
-    // @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.chat)
-    // chatUsuarios: ChatUsuario[];
+    @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.chat)
+    chatUsuarios: ChatUsuario[];
+
+    //Relación con message 
+    @OneToMany(() => Message, message => message.chat)
+    messages: Message[];
 }

@@ -1,7 +1,8 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { UsuarioRol } from './usuario_rol.entity';
+import { Session } from './session.entity';
 
 @Entity({ name: 'TBL_SOLICITUDES', schema: 'BOTUTN' })
-
 export class Solicitud {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -35,4 +36,19 @@ export class Solicitud {
 
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
+
+    // Relación con UsuarioRol para SOLICITANTE
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.solicitudesSolicitante)
+    @JoinColumn({ name: 'SOLICITANTE' })
+    solicitanteUsuario: UsuarioRol;
+
+    // Relación con UsuarioRol para REACCION
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.solicitudesReaccion)
+    @JoinColumn({ name: 'REACCION' })
+    reaccionUsuario: UsuarioRol;
+
+    // Relación con Session para ID_SESSION
+    @ManyToOne(() => Session, session => session.solicitudes)
+    @JoinColumn({ name: 'ID_SESSION' })
+    session: Session;
 }

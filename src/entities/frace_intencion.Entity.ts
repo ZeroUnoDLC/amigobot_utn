@@ -1,28 +1,29 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { Intencion } from './intencion.entity';
+import { UsuarioRol } from './usuario_rol.entity';
 
 @Entity({ name: 'TBL_FRACE_INTENCION', schema: 'BOTUTN' })
-
 export class FraceIntencion {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
 
-    @Column({ name: 'ID_INTENCION', type: 'number' })
-    idIntencion: number;
+    @ManyToOne(() => Intencion, intencion => intencion.fraceIntenciones)
+    idIntencion: Intencion;
 
     @Column({ name: 'FRACE', type: 'varchar', length: 200 })
     frace: string;
-
+a
     @Column({ name: 'ACTIVO', type: 'number' })
     activo: number;
 
-    @Column({ name: 'CREATEDBY', type: 'number' })
-    createdBy: number;
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdFraceIntenciones)
+    createdBy: UsuarioRol;
 
-    @Column({ name: 'UPDATEDBY', type: 'number' })
-    updatedBy: number;
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedFraceIntenciones)
+    updatedBy: UsuarioRol;
 
-    @Column({ name: 'DELETEDBY', type: 'number' })
-    deletedBy: number;
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedFraceIntenciones)
+    deletedBy: UsuarioRol;
 
     @CreateDateColumn({ name: 'CREATEDAT', type: 'timestamp' })
     createdAt: Date;

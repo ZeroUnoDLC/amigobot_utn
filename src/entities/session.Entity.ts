@@ -1,7 +1,10 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn,Index } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Comentario } from './comentario.entity'; 
+import { Message } from './message.entity'; 
+import { UsuarioRol } from './usuario_rol.entity'; 
+import { Solicitud } from './solicitudes.Entity';
 
 @Entity({ name: 'TBL_SESSION', schema: 'BOTUTN' })
-
 export class Session {
     @PrimaryColumn({ name: 'ID', type: 'number' })
     id: number;
@@ -38,4 +41,32 @@ export class Session {
 
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
+
+    @OneToMany(() => Comentario, comentario => comentario.idSession)
+    comentarios: Comentario[];
+
+    // Relaciones faltantes con UsuarioRol
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.sessions)
+    @JoinColumn({ name: 'ID_USUARIO' })
+    usuario: UsuarioRol;
+
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdSessions)
+    @JoinColumn({ name: 'CREATEDBY' })
+    createdByUsuario: UsuarioRol;
+
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedSessions)
+    @JoinColumn({ name: 'UPDATEDBY' })
+    updatedByUsuario: UsuarioRol;
+
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedSessions)
+    @JoinColumn({ name: 'DELETEDBY' })
+    deletedByUsuario: UsuarioRol;
+
+    // Relaciones para Message
+    @OneToMany(() => Message, message => message.session)
+    messages: Message[];
+
+    //Relaciones con solicitudes
+    @OneToMany(() => Solicitud, solicitud=> solicitud.session)
+    solicitudes: Solicitud[];
 }
