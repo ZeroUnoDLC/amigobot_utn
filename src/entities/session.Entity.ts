@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import { Comentario } from './comentario.entity'; 
-import { Message } from './message.entity'; 
-import { UsuarioRol } from './usuario_rol.entity'; 
+import { Comentario } from './comentario.entity';
+import { UsuarioRol } from './usuario_rol.entity';
+import { Message } from './message.Entity';
 import { Solicitud } from './solicitudes.Entity';
 
 @Entity({ name: 'TBL_SESSION', schema: 'BOTUTN' })
@@ -68,6 +68,6 @@ export class Session {
     message: Message[];
 
     //Relaciones con solicitudes
-    @OneToMany(() => Solicitud, solicitud=> solicitud.session)
+    @OneToMany(() => Solicitud, solicitud => solicitud.session)
     solicitud: Solicitud[];
 }

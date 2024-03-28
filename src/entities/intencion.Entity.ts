@@ -32,15 +32,15 @@ export class Intencion {
     deletedAt: Date;
 
     //Relacion con UsuarioRol
-    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdIntenciones)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdIntencion)
     @JoinColumn({ name: 'CREATEDBY' })
     createdByUsuarioRol: UsuarioRol;
 
-    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedIntenciones)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.updatedIntencion)
     @JoinColumn({ name: 'UPDATEDBY' })
     updatedByUsuarioRol: UsuarioRol;
 
-    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedIntenciones)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.deletedIntencion)
     @JoinColumn({ name: 'DELETEDBY' })
     deletedByUsuarioRol: UsuarioRol;
 

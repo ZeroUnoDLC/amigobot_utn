@@ -33,5 +33,5 @@ export class Chat {
 
     //Relación con message 
     @OneToMany(() => Message, message => message.chat)
-    messages: Message[];
+    message: Message[];
 }

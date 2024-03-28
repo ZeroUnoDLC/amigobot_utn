@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { UsuarioRol } from './usuario_rol.entity';
 import { Session } from './session.Entity';
-import { UsuarioRol } from './usuario_rol.Entity';
-import { Chat } from './chat.Entity';
+import { Chat } from './chat.entity';
 
 
 @Entity({ name: 'TBL_MESSAGE', schema: 'BOTUTN' })
@@ -43,22 +43,22 @@ export class Message {
     deletedAt: Date;
 
     // Relación con UsuarioRol (ANSWERBY)
-    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.answerMessages)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.message)
     @JoinColumn({ name: 'ANSWERBY' })
-    answeredBy: UsuarioRol;
+    usuarioRol: UsuarioRol;
 
-    // Relación con Chat (ID_CHAT)
-    @ManyToOne(() => Chat, chat => chat.messages)
-    @JoinColumn({ name: 'ID_CHAT' })
-    chat: Chat;
+    // Relación con UsuarioRol (ID_USUARIO)
+    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.messages)
+    @JoinColumn({ name: 'ID_USUARIO' })
+    user: UsuarioRol;
 
     // Relación con Session (ID_SESSION)
     @ManyToOne(() => Session, session => session.message)
     @JoinColumn({ name: 'ID_SESSION' })
     session: Session;
 
-    // Relación con UsuarioRol (ID_USUARIO)
-    @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.messages)
-    @JoinColumn({ name: 'ID_USUARIO' })
-    user: UsuarioRol;
+    // Relación con Chat (ID_CHAT)
+    @ManyToOne(() => Chat, chat => chat.message)
+    @JoinColumn({ name: 'ID_CHAT' })
+    chat: Chat;
 }

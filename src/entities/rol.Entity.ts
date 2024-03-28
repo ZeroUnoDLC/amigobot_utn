@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { UsuarioRol } from './usuario_rol.Entity';
+import { UsuarioRol } from './usuario_rol.entity';
 
 @Entity({ name: 'TBL_ROL', schema: 'BOTUTN' })
 

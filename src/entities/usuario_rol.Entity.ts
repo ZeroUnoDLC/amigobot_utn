@@ -49,6 +49,7 @@ export class UsuarioRol {
     @Column({ name: 'DELETEDAT', type: 'timestamp' })
     deletedAt: Date;
 
+    //Relaciones con chatUsuario
     @OneToMany(() => ChatUsuario, chatUsuario => chatUsuario.usuarioCreated)
     createdChatUsuarios: ChatUsuario[];
 
@@ -76,17 +77,17 @@ export class UsuarioRol {
 
     // Relaciones con Intencion
     @OneToMany(() => Intencion, intencion => intencion.createdByUsuarioRol)
-    createdIntenciones: Intencion[];
+    createdIntencion: Intencion[];
 
     @OneToMany(() => Intencion, intencion => intencion.updatedByUsuarioRol)
-    updatedIntenciones: Intencion[];
+    updatedIntencion: Intencion[];
 
     @OneToMany(() => Intencion, intencion => intencion.deletedByUsuarioRol)
-    deletedIntenciones: Intencion[];
+    deletedIntencion: Intencion[];
 
     //Relaciones con message
-    @OneToMany(() => Message, message => message.answeredBy)
-    answerMessages: Message[];
+    @OneToMany(() => Message, message => message.usuarioRol)
+    message: Message[];
 
     @OneToMany(() => Message, message => message.user)
     messages: Message[];
