@@ -1,7 +1,8 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { UsuarioRol } from './usuario_rol.entity';
-import { Chat } from './chat.entity';
-import { Session } from './session.entity';
+import { Session } from './session.Entity';
+import { UsuarioRol } from './usuario_rol.Entity';
+import { Chat } from './chat.Entity';
+
 
 @Entity({ name: 'TBL_MESSAGE', schema: 'BOTUTN' })
 export class Message {
@@ -52,7 +53,7 @@ export class Message {
     chat: Chat;
 
     // Relación con Session (ID_SESSION)
-    @ManyToOne(() => Session, session => session.messages)
+    @ManyToOne(() => Session, session => session.message)
     @JoinColumn({ name: 'ID_SESSION' })
     session: Session;
 

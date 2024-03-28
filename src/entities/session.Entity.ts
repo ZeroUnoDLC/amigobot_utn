@@ -65,9 +65,9 @@ export class Session {
 
     // Relaciones para Message
     @OneToMany(() => Message, message => message.session)
-    messages: Message[];
+    message: Message[];
 
     //Relaciones con solicitudes
     @OneToMany(() => Solicitud, solicitud=> solicitud.session)
-    solicitudes: Solicitud[];
+    solicitud: Solicitud[];
 }

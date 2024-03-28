@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { UsuarioRol } from './usuario_rol.entity';
-import { Session } from './session.entity';
+import { Session } from './session.Entity';
 
 @Entity({ name: 'TBL_SOLICITUDES', schema: 'BOTUTN' })
 export class Solicitud {
@@ -48,7 +48,7 @@ export class Solicitud {
     reaccionUsuario: UsuarioRol;
 
     // Relación con Session para ID_SESSION
-    @ManyToOne(() => Session, session => session.solicitudes)
+    @ManyToOne(() => Session, session => session.solicitud)
     @JoinColumn({ name: 'ID_SESSION' })
     session: Session;
 }
