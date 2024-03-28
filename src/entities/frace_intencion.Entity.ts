@@ -16,6 +16,7 @@ a
     @Column({ name: 'ACTIVO', type: 'number' })
     activo: number;
 
+    //Relaciones con usuarioRol
     @ManyToOne(() => UsuarioRol, usuarioRol => usuarioRol.createdFraceIntenciones)
     createdBy: UsuarioRol;
 
