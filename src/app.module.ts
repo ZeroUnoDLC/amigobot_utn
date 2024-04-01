@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConectionModule } from './connection/conection.module';
+import { typeOrmConfig } from './config/typeorm.config';
 import { ChatUsuarioModule } from './modules/chat_usuario/chat_usuario.module';
 import { ChatModule } from './modules/chat/chat.module';
 import { ComentarioModule } from './modules/comentario/comentario.module';
@@ -14,10 +14,11 @@ import { SessionModule } from './modules/session/session.module';
 import { SolicitudesModule } from './modules/solicitudes/solicitudes.module';
 import { UsuarioRolModule } from './modules/usuario_rol/usuario_rol.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    ConectionModule,
+    TypeOrmModule.forRoot(typeOrmConfig),
     ChatUsuarioModule,
     ChatModule,
     ComentarioModule,

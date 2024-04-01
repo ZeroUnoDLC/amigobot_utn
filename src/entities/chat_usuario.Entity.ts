@@ -2,6 +2,7 @@ import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Many
 import { Chat } from './chat.Entity';
 import { UsuarioRol } from './usuario_rol.Entity';
 
+
 @Entity({ name: 'TBL_CHAT_USUARIO', schema: 'BOTUTN' })
 export class ChatUsuario {
     @PrimaryColumn({ name: 'ID', type: 'number' })

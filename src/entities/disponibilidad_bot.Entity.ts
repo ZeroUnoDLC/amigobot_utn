@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index} from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Index, BaseEntity} from 'typeorm';
 
 @Entity({ name: 'TBL_DISPONIBILIDAD_BOT', schema: 'BOTUTN' })
 
