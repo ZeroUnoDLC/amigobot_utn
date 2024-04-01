@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           type: 'oracle',
           host: 'localhost',
           port: 1521,
-          username: 'botutn',
+          username: 'testing',
           password: '0988188838',
           serviceName: 'XEPDB1',
           autoLoadEntities: true,

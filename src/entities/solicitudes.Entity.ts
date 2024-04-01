@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { UsuarioRol } from './usuario_rol.entity';
-import { Session } from './session.Entity';
+import { UsuarioRol } from './usuario_rol.Entity';
+import { Session } from './session.Entity'; 
 
 @Entity({ name: 'TBL_SOLICITUDES', schema: 'BOTUTN' })
 export class Solicitud {

@@ -1,5 +1,5 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn, OneToMany } from 'typeorm';
-import { ChatUsuario } from './chat_usuario.entity';
+import { ChatUsuario } from './chat_usuario.Entity';
 import { Message } from './message.Entity';
 
 @Entity({ name: 'TBL_CHAT', schema: 'BOTUTN' })

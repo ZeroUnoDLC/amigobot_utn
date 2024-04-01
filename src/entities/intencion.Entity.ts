@@ -45,6 +45,6 @@ export class Intencion {
     deletedByUsuarioRol: UsuarioRol;
 
     //Relacion con FraceIntencion
-    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.idIntenciones)
+    @OneToMany(() => FraceIntencion, fraceIntencion => fraceIntencion.itencion)
     fraceIntencion: FraceIntencion[];
 }

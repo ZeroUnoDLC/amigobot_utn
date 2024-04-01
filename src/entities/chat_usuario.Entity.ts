@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Chat } from './chat.entity';
-import { UsuarioRol } from './usuario_rol.entity'; 
+import { Chat } from './chat.Entity';
+import { UsuarioRol } from './usuario_rol.Entity';
 
 @Entity({ name: 'TBL_CHAT_USUARIO', schema: 'BOTUTN' })
 export class ChatUsuario {

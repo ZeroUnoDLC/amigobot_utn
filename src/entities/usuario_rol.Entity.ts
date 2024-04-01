@@ -1,11 +1,11 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import { ChatUsuario } from './chat_usuario.entity';
-import { FraceIntencion } from './frace_intencion.Entity';
-import { Intencion } from './intencion.Entity';
-import { Message } from './message.Entity';
-import { Session } from './session.Entity';
+import { ChatUsuario } from './chat_usuario.Entity'; 
+import { FraceIntencion } from './frace_intencion.Entity'; 
+import { Intencion } from './intencion.Entity'; 
+import { Message } from './message.Entity'; 
+import { Session } from './session.Entity'; 
 import { Solicitud } from './solicitudes.Entity';
-import { Usuario } from './usuario.Entity';
+import { Usuario } from './usuario.Entity'; 
 import { Rol } from './rol.Entity';
 
 @Entity({ name: 'TBL_USUARIO_ROL', schema: 'BOTUTN' })

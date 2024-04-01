@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import { Comentario } from './comentario.entity';
-import { UsuarioRol } from './usuario_rol.entity';
+import { Comentario } from './comentario.Entity';
+import { UsuarioRol } from './usuario_rol.Entity';
 import { Message } from './message.Entity';
 import { Solicitud } from './solicitudes.Entity';
 
